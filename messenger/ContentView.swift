@@ -9,14 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showDetails = false
-    var body: some View {	
-        VStack(alignment: .leading) {
-            Button("show details"){
-                showDetails.toggle()
-            }
-            if showDetails {
-                Text("Super text").font(.largeTitle)
-            }
+    var body: some View {
+        NavigationView {
+            VStack(alignment: .leading) {
+                NavigationLink(
+                    destination: Text("LUL"),
+                    label:{
+                        Text("xd")
+                    }
+                )
+                Button("show details"){
+                    showDetails.toggle()
+                }
+                if showDetails {
+                    Text("Super text").font(.largeTitle)
+                }
+            }.navigationTitle("Messenger APP").navigationBarTitleDisplayMode(.inline)
         }
     }
 }
