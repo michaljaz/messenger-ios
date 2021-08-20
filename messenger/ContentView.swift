@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+    
 struct ContentView: View {
     @State private var email: String=""
     var body: some View {
