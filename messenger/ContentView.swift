@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showDetails = false
     var body: some View {	
-        Text("Messegner app")
+        VStack(alignment: .leading) {
+            Button("show details"){
+                showDetails.toggle()
+            }
+            if showDetails {
+                Text("Super text").font(.largeTitle)
+            }
+        }
     }
 }
 
