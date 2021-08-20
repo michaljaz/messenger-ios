@@ -8,23 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var showDetails = false
+    @State private var email: String=""
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
                 NavigationLink(
-                    destination: Text("LUL"),
+                    destination: VStack(alignment: .leading) {
+                        Text("Here you will sign in with email")
+                        TextField("Enter your email",text:$email)
+                        Text("Hello \(email)")
+                    }.navigationTitle("Sign in with email").navigationBarTitleDisplayMode(.inline),
                     label:{
-                        Text("xd")
+                        Text("Continue with email")
+                        .padding()
+                        .background(Color(red: 0, green: 0, blue: 0.5))
+                        .clipShape(Capsule())
                     }
                 )
-                Button("show details"){
-                    showDetails.toggle()
-                }
-                if showDetails {
-                    Text("Super text").font(.largeTitle)
-                }
-            }.navigationTitle("Messenger APP").navigationBarTitleDisplayMode(.inline)
+            }.navigationTitle("Choose sign in option").navigationBarTitleDisplayMode(.inline)
         }
     }
 }
