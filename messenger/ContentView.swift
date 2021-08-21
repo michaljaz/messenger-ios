@@ -6,7 +6,23 @@
 //
 
 import SwiftUI
+import MaterialComponents.MaterialButtons
     
+struct FloatingActionButton: UIViewRepresentable {
+    let title: String
+
+    init(_ title: String) {
+        self.title = title
+    }
+    
+    func makeUIView(context: Context) -> MDCFloatingButton {
+        return MDCFloatingButton(shape: .default)
+    }
+    
+    func updateUIView(_ uiView: MDCFloatingButton, context: Context) {
+        uiView.setTitle(title, for: .normal)
+    }
+}
 struct ContentView: View {
     @State private var email: String=""
     var body: some View {
@@ -25,6 +41,7 @@ struct ContentView: View {
                         .clipShape(Capsule())
                     }
                 )
+                FloatingActionButton("+").fixedSize().padding()
             }.navigationTitle("Choose sign in option").navigationBarTitleDisplayMode(.inline)
         }
     }

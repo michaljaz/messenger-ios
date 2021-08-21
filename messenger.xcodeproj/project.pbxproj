@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1DBF4E4C23CA3C7B5C96E9D0 /* libPods-messenger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0AFE70D37AEA1883B4E2938 /* libPods-messenger.a */; };
+		204D9A2C85EA0332AFC6F12D /* Pods_messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C281CB1E96BE4575CFE092 /* Pods_messenger.framework */; };
 		274D04C226CEBBE20048C5B1 /* messengerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D04C126CEBBE20048C5B1 /* messengerApp.swift */; };
 		274D04C426CEBBE20048C5B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D04C326CEBBE20048C5B1 /* ContentView.swift */; };
 		274D04C626CEBBEA0048C5B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 274D04C526CEBBEA0048C5B1 /* Assets.xcassets */; };
@@ -25,7 +25,7 @@
 		274D04CA26CEBBEA0048C5B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		275F603426CFD78D00BB3A33 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9DCE807EB1634264FAFB34BF /* Pods-messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-messenger.release.xcconfig"; path = "Target Support Files/Pods-messenger/Pods-messenger.release.xcconfig"; sourceTree = "<group>"; };
-		A0AFE70D37AEA1883B4E2938 /* libPods-messenger.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-messenger.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1C281CB1E96BE4575CFE092 /* Pods_messenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_messenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DBF4E4C23CA3C7B5C96E9D0 /* libPods-messenger.a in Frameworks */,
+				204D9A2C85EA0332AFC6F12D /* Pods_messenger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,7 +92,7 @@
 		8F65480E9D3621F83732A069 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A0AFE70D37AEA1883B4E2938 /* libPods-messenger.a */,
+				C1C281CB1E96BE4575CFE092 /* Pods_messenger.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -108,6 +108,7 @@
 				274D04BA26CEBBE20048C5B1 /* Sources */,
 				274D04BB26CEBBE20048C5B1 /* Frameworks */,
 				274D04BC26CEBBE20048C5B1 /* Resources */,
+				89CA1165697D9685113960B5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -184,6 +185,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89CA1165697D9685113960B5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-messenger/Pods-messenger-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-messenger/Pods-messenger-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-messenger/Pods-messenger-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
