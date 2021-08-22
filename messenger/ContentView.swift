@@ -7,7 +7,8 @@
 
 import SwiftUI
 import MaterialComponents.MaterialButtons
-    
+import Firebase
+
 struct MaterialButton: UIViewRepresentable {
     let title: String
     let background: UIColor
@@ -34,10 +35,18 @@ struct ContentView: View {
             VStack(alignment: .center) {
                 NavigationLink(
                     destination: VStack(alignment: .center) {
-                        TextField("Enter your email",text:$email).autocapitalization(.none)
-                        SecureField("Enter your password",text:$password)
+                        TextField("Enter your email",text:$email).autocapitalization(.none).disableAutocorrection(true)
+                        SecureField("Enter your password",text:$password).disableAutocorrection(true)
                         Button("Sign in"){
+                            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                                print(authResult as Any)
+                            }
+                        }
+                        Button("Register"){
                             print(email,password)
+                            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                                print(authResult as Any)
+                            }
                         }
                     }.navigationTitle("Sign in with email").navigationBarTitleDisplayMode(.inline),
                     label:{
