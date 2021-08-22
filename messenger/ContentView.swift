@@ -8,26 +8,29 @@
 import SwiftUI
 import MaterialComponents.MaterialButtons
     
-struct FloatingActionButton: UIViewRepresentable {
+struct MaterialButton: UIViewRepresentable {
     let title: String
+    let background: UIColor
 
-    init(_ title: String) {
+    init(_ title: String,_ background: UIColor) {
         self.title = title
+        self.background=background
     }
     
-    func makeUIView(context: Context) -> MDCFloatingButton {
-        return MDCFloatingButton(shape: .default)
+    func makeUIView(context: Context) -> MDCButton {
+        return MDCButton()
     }
     
-    func updateUIView(_ uiView: MDCFloatingButton, context: Context) {
+    func updateUIView(_ uiView: MDCButton, context: Context) {
         uiView.setTitle(title, for: .normal)
+        uiView.backgroundColor=background
     }
 }
 struct ContentView: View {
     @State private var email: String=""
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
+            VStack(alignment: .center) {
                 NavigationLink(
                     destination: VStack(alignment: .leading) {
                         Text("Here you will sign in with email")
@@ -41,7 +44,8 @@ struct ContentView: View {
                         .clipShape(Capsule())
                     }
                 )
-                FloatingActionButton("+").fixedSize().padding()
+                MaterialButton("Continue with google",UIColor.red).fixedSize(horizontal: false, vertical: true).padding(2)
+                MaterialButton("Continue with facebook",UIColor.blue).fixedSize(horizontal: false, vertical: true).padding(2)
             }.navigationTitle("Choose sign in option").navigationBarTitleDisplayMode(.inline)
         }
     }
