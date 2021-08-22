@@ -28,24 +28,24 @@ struct MaterialButton: UIViewRepresentable {
 }
 struct ContentView: View {
     @State private var email: String=""
+    @State private var password: String=""
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
                 NavigationLink(
-                    destination: VStack(alignment: .leading) {
-                        Text("Here you will sign in with email")
-                        TextField("Enter your email",text:$email)
-                        Text("Hello \(email)")
+                    destination: VStack(alignment: .center) {
+                        TextField("Enter your email",text:$email).autocapitalization(.none)
+                        SecureField("Enter your password",text:$password)
+                        Button("Sign in"){
+                            print(email,password)
+                        }
                     }.navigationTitle("Sign in with email").navigationBarTitleDisplayMode(.inline),
                     label:{
-                        Text("Continue with email")
-                        .padding()
-                        .background(Color(red: 0, green: 0, blue: 0.5))
-                        .clipShape(Capsule())
+                        MaterialButton("Continue with email",UIColor.orange).fixedSize(horizontal: false, vertical: true).padding(2)
                     }
                 )
                 MaterialButton("Continue with google",UIColor.red).fixedSize(horizontal: false, vertical: true).padding(2)
-                MaterialButton("Continue with facebook",UIColor.blue).fixedSize(horizontal: false, vertical: true).padding(2)
+                MaterialButton("Continue with facebook",UIColor.systemBlue).fixedSize(horizontal: false, vertical: true).padding(2)
             }.navigationTitle("Choose sign in option").navigationBarTitleDisplayMode(.inline)
         }
     }
