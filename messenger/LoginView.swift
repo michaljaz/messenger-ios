@@ -6,52 +6,71 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct LoginView: View {
-
-  // 1
-  @EnvironmentObject var viewModel: AuthViewModel
-
-  var body: some View {
-    VStack {
-      Spacer()
-
-      // 2
-      Image("header_image")
-        .resizable()
-        .aspectRatio(contentMode: .fit)
-
-      Text("Welcome to Ellifit!")
-        .fontWeight(.black)
-        .foregroundColor(Color(.systemIndigo))
-        .font(.largeTitle)
-        .multilineTextAlignment(.center)
-
-      Text("Empower your elliptical workouts by tracking every move.")
-        .fontWeight(.light)
-        .multilineTextAlignment(.center)
-        .padding()
-
-      Spacer()
-
-      // 3
-      Button("Sign in with Google") {
-        viewModel.signIn()
-      }
-      .buttonStyle(AuthenticationButtonStyle())
+    @State private var email: String=""
+    @State private var password: String=""
+    // 1
+    @EnvironmentObject var viewModel: AuthViewModel
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                Spacer()
+                
+                // 2
+                Image("header_image")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                
+                Text("Welcome to Messenger!")
+                    .fontWeight(.black)
+                    .foregroundColor(Color(.systemIndigo))
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
+                
+                Spacer()
+                
+                NavigationLink(
+                    destination: VStack(alignment: .center) {
+                        TextField("Enter your email",text:$email).autocapitalization(.none).disableAutocorrection(true)
+                        SecureField("Enter your password",text:$password).disableAutocorrection(true)
+                        Button("Sign in"){
+                            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                                print(authResult as Any)
+                            }
+                        }
+                        Button("Register"){
+                            print(email,password)
+                            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                                print(authResult as Any)
+                            }
+                        }
+                    }.navigationTitle("Sign in with email").navigationBarTitleDisplayMode(.inline),
+                    label:{
+                        Text("Continue with email").buttonStyle(AuthenticationButtonStyle())
+                    }
+                )
+                
+                Button("Continue with Google") {
+                    viewModel.signIn()
+                }
+                .buttonStyle(AuthenticationButtonStyle())
+            }
+        }
     }
-  }
 }
 
 // 4
 struct AuthenticationButtonStyle: ButtonStyle {
-  func makeBody(configuration: Self.Configuration) -> some View {
-    configuration.label
-      .foregroundColor(.white)
-      .padding()
-      .frame(maxWidth: .infinity)
-      .background(Color(.systemIndigo))
-      .cornerRadius(12)
-      .padding()
-  }
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .foregroundColor(.white)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color(.systemIndigo))
+            .cornerRadius(12)
+            .padding()
+    }
 }

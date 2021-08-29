@@ -1,4 +1,4 @@
-	//
+//
 //  ContentView.swift
 //  messenger
 //
@@ -6,27 +6,8 @@
 //
 
 import SwiftUI
-import MaterialComponents.MaterialButtons
 import Firebase
 
-struct MaterialButton: UIViewRepresentable {
-    let title: String
-    let background: UIColor
-
-    init(_ title: String,_ background: UIColor) {
-        self.title = title
-        self.background=background
-    }
-    
-    func makeUIView(context: Context) -> MDCButton {
-        return MDCButton()
-    }
-    
-    func updateUIView(_ uiView: MDCButton, context: Context) {
-        uiView.setTitle(title, for: .normal)
-        uiView.backgroundColor=background
-    }
-}
 //struct ContentView: View {
 //    @State private var email: String=""
 //    @State private var password: String=""
@@ -65,14 +46,14 @@ struct MaterialButton: UIViewRepresentable {
 //        ContentView()
 //    }
 //}
-    
-struct ContentView: View {
-  @EnvironmentObject var viewModel: AuthViewModel
 
-  var body: some View {
-    switch viewModel.state {
-    case .signedIn: HomeView()
-    case .signedOut: LoginView()
+struct ContentView: View {
+    @EnvironmentObject var viewModel: AuthViewModel
+    
+    var body: some View {
+        switch viewModel.state {
+        case .signedIn: HomeView()
+        case .signedOut: LoginView()
+        }
     }
-  }
 }

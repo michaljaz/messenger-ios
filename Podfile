@@ -11,6 +11,5 @@ target 'messenger' do
   # https://firebase.google.com/docs/ios/setup#available-pods
   pod 'Firebase/Auth'
   
-  pod 'MaterialComponents/Buttons'
   pod 'GoogleSignIn', '~> 5.0.2'
 end
