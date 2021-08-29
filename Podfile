@@ -12,4 +12,5 @@ target 'messenger' do
   pod 'Firebase/Auth'
   
   pod 'GoogleSignIn', '~> 5.0.2'
+  pod 'FBSDKLoginKit'
 end

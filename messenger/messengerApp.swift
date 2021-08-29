@@ -8,10 +8,12 @@
 import SwiftUI
 import Firebase
 import GoogleSignIn
-
+import FBSDKCoreKit
 @main
 struct messengerApp: App {
     @StateObject var viewModel = AuthViewModel()
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     init(){
         setupAuthentication()
@@ -22,6 +24,16 @@ struct messengerApp: App {
         }
     }
 }
+
+class AppDelegate: NSObject, UIApplicationDelegate
+{
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool
+    {
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        return true
+    }
+}
+
 extension messengerApp {
   private func setupAuthentication() {
     FirebaseApp.configure()
