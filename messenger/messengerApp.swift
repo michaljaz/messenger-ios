@@ -7,15 +7,24 @@
 
 import SwiftUI
 import Firebase
+import GoogleSignIn
 
 @main
 struct messengerApp: App {
+    @StateObject var viewModel = AuthViewModel()
+    
     init(){
-        FirebaseApp.configure()
+        setupAuthentication()
     }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(viewModel)
         }
     }
+}
+extension messengerApp {
+  private func setupAuthentication() {
+    FirebaseApp.configure()
+    GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+  }
 }

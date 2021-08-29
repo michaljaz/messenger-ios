@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		204D9A2C85EA0332AFC6F12D /* Pods_messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C281CB1E96BE4575CFE092 /* Pods_messenger.framework */; };
+		2724F38326DAB1BC00E79EDB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724F38226DAB1BC00E79EDB /* AuthViewModel.swift */; };
+		2724F38526DAB59900E79EDB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724F38426DAB59900E79EDB /* LoginView.swift */; };
+		2724F38726DAB5CE00E79EDB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724F38626DAB5CE00E79EDB /* HomeView.swift */; };
 		274D04C226CEBBE20048C5B1 /* messengerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D04C126CEBBE20048C5B1 /* messengerApp.swift */; };
 		274D04C426CEBBE20048C5B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274D04C326CEBBE20048C5B1 /* ContentView.swift */; };
 		274D04C626CEBBEA0048C5B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 274D04C526CEBBEA0048C5B1 /* Assets.xcassets */; };
@@ -17,6 +20,9 @@
 
 /* Begin PBXFileReference section */
 		033F2F566A07EBD0D630AC93 /* Pods-messenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-messenger.debug.xcconfig"; path = "Target Support Files/Pods-messenger/Pods-messenger.debug.xcconfig"; sourceTree = "<group>"; };
+		2724F38226DAB1BC00E79EDB /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		2724F38426DAB59900E79EDB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2724F38626DAB5CE00E79EDB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		274D04BE26CEBBE20048C5B1 /* messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		274D04C126CEBBE20048C5B1 /* messengerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messengerApp.swift; sourceTree = "<group>"; };
 		274D04C326CEBBE20048C5B1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,6 +73,9 @@
 				274D04CA26CEBBEA0048C5B1 /* Info.plist */,
 				274D04C726CEBBEA0048C5B1 /* Preview Content */,
 				275F603426CFD78D00BB3A33 /* GoogleService-Info.plist */,
+				2724F38226DAB1BC00E79EDB /* AuthViewModel.swift */,
+				2724F38426DAB59900E79EDB /* LoginView.swift */,
+				2724F38626DAB5CE00E79EDB /* HomeView.swift */,
 			);
 			path = messenger;
 			sourceTree = "<group>";
@@ -85,7 +94,6 @@
 				033F2F566A07EBD0D630AC93 /* Pods-messenger.debug.xcconfig */,
 				9DCE807EB1634264FAFB34BF /* Pods-messenger.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -109,6 +117,7 @@
 				274D04BB26CEBBE20048C5B1 /* Frameworks */,
 				274D04BC26CEBBE20048C5B1 /* Resources */,
 				89CA1165697D9685113960B5 /* [CP] Embed Pods Frameworks */,
+				9502EE15BA12F4194737C696 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -204,6 +213,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-messenger/Pods-messenger-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9502EE15BA12F4194737C696 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-messenger/Pods-messenger-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-messenger/Pods-messenger-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-messenger/Pods-messenger-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -211,7 +237,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2724F38326DAB1BC00E79EDB /* AuthViewModel.swift in Sources */,
 				274D04C426CEBBE20048C5B1 /* ContentView.swift in Sources */,
+				2724F38526DAB59900E79EDB /* LoginView.swift in Sources */,
+				2724F38726DAB5CE00E79EDB /* HomeView.swift in Sources */,
 				274D04C226CEBBE20048C5B1 /* messengerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
