@@ -17,9 +17,6 @@ class AuthViewModel: NSObject, ObservableObject {
     }
     var manager = LoginManager()
     @Published var state: SignInState = .signedOut
-    @Published var email: String = ""
-    @Published var displayName: String = ""
-    @Published var photoUrl: String = ""
     
     override init() {
         super.init()
@@ -45,7 +42,6 @@ class AuthViewModel: NSObject, ObservableObject {
                 Auth.auth().signIn(with:credential) { authResult, error in
                     state = .signedIn
                 }
-                print(email,displayName,photoUrl)
             }
         }
     }
