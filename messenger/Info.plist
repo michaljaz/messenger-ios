@@ -16,8 +16,6 @@
 	</array>
 	<key>FacebookAppID</key>
 	<string>217871846601777</string>
-	<key>FacebookClientToken</key>
-	<string>6e04a5a973c9607d0b11eb45b197f227</string>
 	<key>FacebookDisplayName</key>
 	<string>Messenger App</string>
 	<key>LSApplicationQueriesSchemes</key>
