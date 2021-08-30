@@ -45,7 +45,7 @@ struct HomeView: View {
                 Button("Sign out") {
                     viewModel.signOut()
                 }
-                .buttonStyle(AuthenticationButtonStyle())
+                .buttonStyle(AuthenticationButtonStyle(bgColor:Color(.systemIndigo)))
             }
             .navigationTitle("Messenger")
         }

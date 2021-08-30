@@ -6,23 +6,16 @@
 //
 
 import SwiftUI
-import Firebase
 import FBSDKLoginKit
 
 struct LoginView: View {
-    @State private var email: String=""
-    @State private var password: String=""
+   
     @EnvironmentObject var viewModel: AuthViewModel
-    
     
     var body: some View {
         NavigationView {
             VStack {
                 Spacer()
-                
-                Image("header_image")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
                 
                 Text("Welcome to Messenger!")
                     .fontWeight(.black)
@@ -31,49 +24,42 @@ struct LoginView: View {
                     .multilineTextAlignment(.center)
                 
                 Spacer()
-                
                 NavigationLink(
-                    destination: VStack(alignment: .center) {
-                        TextField("Enter your email",text:$email).autocapitalization(.none).disableAutocorrection(true)
-                        SecureField("Enter your password",text:$password).disableAutocorrection(true)
-                        Button("Sign in"){
-                            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-                                print(authResult as Any)
-                            }
-                        }
-                        Button("Register"){
-                            print(email,password)
-                            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                                print(authResult as Any)
-                            }
-                        }
-                    }.navigationTitle("Sign in with email").navigationBarTitleDisplayMode(.inline),
+                    destination: EmailLoginView(),
                     label:{
-                        Text("Continue with email").buttonStyle(AuthenticationButtonStyle())
+                        Text("Continue with email").foregroundColor(.black)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color(.systemYellow))
+                            .cornerRadius(12)
+                            .padding(.horizontal,15)
+                            .padding(.vertical,2)
                     }
                 )
                 
                 Button("Continue with Google") {
                     viewModel.continueWithGoogle()
-                }.buttonStyle(AuthenticationButtonStyle())
+                }.buttonStyle(AuthenticationButtonStyle(bgColor:Color(.systemRed)))
                 
                 Button("Continue with Facebook") {
                     viewModel.continueWithFacebook()
-                }.buttonStyle(AuthenticationButtonStyle())
+                }.buttonStyle(AuthenticationButtonStyle(bgColor:Color(.systemIndigo))).padding(.bottom,15)
+               
             }
         }
     }
 }
 
-// 4
 struct AuthenticationButtonStyle: ButtonStyle {
+    var bgColor: Color
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .foregroundColor(.white)
+            .foregroundColor(.black)
             .padding()
             .frame(maxWidth: .infinity)
-            .background(Color(.systemIndigo))
+            .background(bgColor)
             .cornerRadius(12)
-            .padding()
+            .padding(.horizontal,15)
+            .padding(.vertical,2)
     }
 }
