@@ -39,19 +39,13 @@ class AuthViewModel: NSObject, ObservableObject {
                 print(err!.localizedDescription)
                 return
             }
-            
             if !result!.isCancelled {
-                state = .signedIn
-                let request = GraphRequest(graphPath:"me",parameters: ["fields":"email, picture.type(large), name"])
-                
-                request.start { (_, res, _) in
-                    guard let profileData = res as? [String : Any] else { return }
-                    email = profileData["email"] as! String
-                    displayName = profileData["name"] as! String
-                    let userID = profileData["id"] as! NSString
-                    photoUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
-                    print(email,displayName,photoUrl)
+                let credential = FacebookAuthProvider
+                  .credential(withAccessToken: AccessToken.current!.tokenString)
+                Auth.auth().signIn(with:credential) { authResult, error in
+                    state = .signedIn
                 }
+                print(email,displayName,photoUrl)
             }
         }
     }
@@ -85,7 +79,6 @@ extension AuthViewModel: GIDSignInDelegate {
     private func firebaseAuthentication(withUser user: GIDGoogleUser) {
         if let authentication = user.authentication {
             let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-            
             Auth.auth().signIn(with: credential) { (_, error) in
                 if let error = error {
                     print(error.localizedDescription)
