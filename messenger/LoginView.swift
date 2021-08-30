@@ -13,14 +13,13 @@ struct LoginView: View {
     @State private var email: String=""
     @State private var password: String=""
     @EnvironmentObject var viewModel: AuthViewModel
-    @State var manager = LoginManager()
+    
     
     var body: some View {
         NavigationView {
             VStack {
                 Spacer()
                 
-                // 2
                 Image("header_image")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -59,21 +58,7 @@ struct LoginView: View {
                 }.buttonStyle(AuthenticationButtonStyle())
                 
                 Button("Continue with Facebook") {
-                    manager.logIn(permissions:["public_profile","email"],from:nil) { (result,err) in
-                        if err != nil {
-                            print(err!.localizedDescription)
-                            return
-                        }
-                        
-                        //logged success...
-                        
-                        let request = GraphRequest(graphPath:"me",parameters: ["fields":"email"])
-                        
-                        request.start { (_, res, _) in
-                            guard let profileData = res as? [String : Any] else { return }
-                            print(profileData["email"] as! String)
-                        }
-                    }
+                    viewModel.continueWithFacebook()
                 }.buttonStyle(AuthenticationButtonStyle())
             }
         }

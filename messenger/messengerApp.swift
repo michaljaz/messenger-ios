@@ -15,9 +15,6 @@ struct messengerApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
-    init(){
-        setupAuthentication()
-    }
     var body: some Scene {
         WindowGroup {
             ContentView().environmentObject(viewModel)
@@ -30,13 +27,8 @@ class AppDelegate: NSObject, UIApplicationDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool
     {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        FirebaseApp.configure()
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         return true
     }
-}
-
-extension messengerApp {
-  private func setupAuthentication() {
-    FirebaseApp.configure()
-    GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-  }
 }

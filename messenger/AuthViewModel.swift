@@ -7,6 +7,7 @@
 
 import Firebase
 import GoogleSignIn
+import FBSDKLoginKit
 
 class AuthViewModel: NSObject, ObservableObject {
     
@@ -14,8 +15,11 @@ class AuthViewModel: NSObject, ObservableObject {
         case signedIn
         case signedOut
     }
-    
+    var manager = LoginManager()
     @Published var state: SignInState = .signedOut
+    @Published var email: String = ""
+    @Published var displayName: String = ""
+    @Published var photoUrl: String = ""
     
     override init() {
         super.init()
@@ -29,8 +33,32 @@ class AuthViewModel: NSObject, ObservableObject {
         }
     }
     
+    func continueWithFacebook() {
+        manager.logIn(permissions:["public_profile","email"],from:nil) { [self] (result,err) in
+            if err != nil {
+                print(err!.localizedDescription)
+                return
+            }
+            
+            if !result!.isCancelled {
+                state = .signedIn
+                let request = GraphRequest(graphPath:"me",parameters: ["fields":"email, picture.type(large), name"])
+                
+                request.start { (_, res, _) in
+                    guard let profileData = res as? [String : Any] else { return }
+                    email = profileData["email"] as! String
+                    displayName = profileData["name"] as! String
+                    let userID = profileData["id"] as! NSString
+                    photoUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
+                    print(email,displayName,photoUrl)
+                }
+            }
+        }
+    }
+    
     func signOut() {
         GIDSignIn.sharedInstance().signOut()
+        manager.logOut()
         do {
             try Auth.auth().signOut()
             state = .signedOut
@@ -39,7 +67,6 @@ class AuthViewModel: NSObject, ObservableObject {
         }
     }
     
-    // 6
     private func setupGoogleSignIn() {
         GIDSignIn.sharedInstance().delegate = self
     }

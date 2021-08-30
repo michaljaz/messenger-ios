@@ -6,31 +6,28 @@
 //
 
 import SwiftUI
-import GoogleSignIn
+import Firebase
 
 struct HomeView: View {
-    
-    // 1
     @EnvironmentObject var viewModel: AuthViewModel
     
-    // 2
-    private let user = GIDSignIn.sharedInstance().currentUser
+    private let user = Auth.auth().currentUser
     
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
-                    // 3
-                    NetworkImage(url: user?.profile.imageURL(withDimension: 200))
+
+                    NetworkImage(url: user?.photoURL)
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 100, height: 100, alignment: .center)
                         .cornerRadius(8)
                     
                     VStack(alignment: .leading) {
-                        Text(user?.profile.name ?? "")
+                        Text(user?.displayName ?? "")
                             .font(.headline)
                         
-                        Text(user?.profile.email ?? "")
+                        Text(user?.email ?? "")
                             .font(.subheadline)
                     }
                     
